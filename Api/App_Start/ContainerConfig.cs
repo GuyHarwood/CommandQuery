@@ -5,20 +5,20 @@ using SimpleInjector.Integration.WebApi;
 
 namespace Api
 {
-    public class ContainerConfig
-    {
-        public static void Configure()
-        {
-            var container = new Container();
+	public class ContainerConfig
+	{
+		public static void Configure()
+		{
+			var container = new Container();
 
-            AppBindings.Bind(container);
+			AppBindings.Bind(container);
 
-            // This is an extension method from the integration package.
-            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+			// This is an extension method from the integration package.
+			container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
 
-            container.Verify();
+			container.Verify();
 
-            GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
-        }
-    }
+			GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
+		}
+	}
 }

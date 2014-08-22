@@ -6,42 +6,41 @@ using Domain.Contacts.Queries;
 
 namespace Api.Controllers
 {
-    [Authorize]
-    public class ContactController : ApiController
-    {
-        private readonly IMediator _mediator;
+	public class ContactController : ApiController
+	{
+		private readonly IMediator _mediator;
 
-        public ContactController(IMediator mediator)
-        {
-            this._mediator = mediator;
-        }
+		public ContactController(IMediator mediator)
+		{
+			_mediator = mediator;
+		}
 
-        // GET api/values
-        public IEnumerable<string> Get()
-        {
-            IEnumerable<ContactProxy> result = this._mediator.Execute(new ContactsQuery());
-            return result.Select(c => c.Name).ToArray();
-        }
+		// GET api/values
+		public IEnumerable<string> Get()
+		{
+			IEnumerable<ContactProxy> result = _mediator.Execute(new ContactsQuery());
+			return result.Select(c => c.Name).ToArray();
+		}
 
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+		// GET api/values/5
+		public string Get(int id)
+		{
+			return "value";
+		}
 
-        // POST api/values
-        public void Post([FromBody] string value)
-        {
-        }
+		// POST api/values
+		public void Post([FromBody] string value)
+		{
+		}
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+		// PUT api/values/5
+		public void Put(int id, [FromBody] string value)
+		{
+		}
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
-    }
+		// DELETE api/values/5
+		public void Delete(int id)
+		{
+		}
+	}
 }

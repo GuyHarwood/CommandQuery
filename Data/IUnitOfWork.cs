@@ -1,8 +1,7 @@
-﻿
-namespace Data
+﻿namespace Data
 {
-    public interface IUnitOfWork
-    {
-        void Commit();
-    }
+	public interface IUnitOfWork
+	{
+		void Commit();
+	}
 }

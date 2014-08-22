@@ -1,8 +1,8 @@
 namespace Core
 {
-    public enum CacheRetrievalOption
-    {
-        LeaveInCache,
-        RemoveFromCache
-    }
+	public enum CacheRetrievalOption
+	{
+		LeaveInCache,
+		RemoveFromCache
+	}
 }

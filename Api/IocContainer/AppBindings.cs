@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.Entity;
-using System.Security.Principal;
-using System.Threading;
-using System.Web;
 using Core;
 using Data;
 using Domain.Contacts.Commands;
@@ -15,11 +12,11 @@ using SimpleInjector.Extensions;
 
 namespace Api.IocContainer
 {
-    public class AppBindings
-    {
-        public static void Bind(Container container)
-        {
-            //inject IPrincipal
+	public class AppBindings
+	{
+		public static void Bind(Container container)
+		{
+			//inject IPrincipal
 //            container.Register(() =>
 //            {
 //                if (HttpContext.Current == null || HttpContext.Current.User == null)
@@ -28,62 +25,62 @@ namespace Api.IocContainer
 //                return HttpContext.Current.User;
 //            });
 
-            //refer to assemblies containing handlers
-            container.RegisterManyForOpenGeneric(typeof (IQueryHandler<,>), new[]
-            {
-                typeof (CreateContactCommand).Assembly
-            });
+			//refer to assemblies containing handlers
+			container.RegisterManyForOpenGeneric(typeof (IQueryHandler<,>), new[]
+			{
+				typeof (CreateContactCommand).Assembly
+			});
 
-            container.RegisterManyForOpenGeneric(typeof (ICommandHandler<>), new[]
-            {
-                typeof (CreateContactCommand).Assembly
-            });
+			container.RegisterManyForOpenGeneric(typeof (ICommandHandler<>), new[]
+			{
+				typeof (CreateContactCommand).Assembly
+			});
 
-            //register repository implementations (you would do this by convention normally)
-            container.RegisterWebApiRequest<ICreateAContact, ContactCreator>();
+			//register repository implementations (you would do this by convention normally)
+			container.RegisterWebApiRequest<ICreateAContact, ContactCreator>();
 
-            container.RegisterWebApiRequest<IReadOnlyRepository>(() =>
-            {
-                //you may wish to get this from the container, but it could be in scope with a consumer that writes
-                var context = new ContactAppEntities();
-                context.Configuration.AutoDetectChangesEnabled = false;
-                return new ReadOnlyRepository(context);
-            });
+			container.RegisterWebApiRequest<IReadOnlyRepository>(() =>
+			{
+				//you may wish to get this from the container, but it could be in scope with a consumer that writes
+				var context = new ContactAppEntities();
+				context.Configuration.AutoDetectChangesEnabled = false;
+				return new ReadOnlyRepository(context);
+			});
 
-            container.RegisterWebApiRequest<ContactAppEntities>();
-            container.RegisterWebApiRequest<EfUnitOfWork>();
-            container.Register<DbContext>(container.GetInstance<ContactAppEntities>);
-            container.Register<IUnitOfWork>(container.GetInstance<EfUnitOfWork>);
-            container.RegisterDecorator(typeof (ICommandHandler<>),
-                typeof (EfUnitOfWorkTransactionCommandHandlerDecorator<>));
-            container.RegisterDecorator(typeof (ICommandHandler<>), typeof (PostCommitCommandHandlerDecorator<>));
+			container.RegisterWebApiRequest<ContactAppEntities>();
+			container.RegisterWebApiRequest<EfUnitOfWork>();
+			container.Register<DbContext>(container.GetInstance<ContactAppEntities>);
+			container.Register<IUnitOfWork>(container.GetInstance<EfUnitOfWork>);
+			container.RegisterDecorator(typeof (ICommandHandler<>),
+				typeof (EfUnitOfWorkTransactionCommandHandlerDecorator<>));
+			container.RegisterDecorator(typeof (ICommandHandler<>), typeof (PostCommitCommandHandlerDecorator<>));
 
-            container.RegisterWebApiRequest<PostCommitRegistrar>();
-            container.Register<IPostCommitRegistrar>(container.GetInstance<PostCommitRegistrar>);
+			container.RegisterWebApiRequest<PostCommitRegistrar>();
+			container.Register<IPostCommitRegistrar>(container.GetInstance<PostCommitRegistrar>);
 
-            //TODO auditing should log via a bus or separate asynchronous repository, not to a logger
-            bool traceEnabled;
-            bool.TryParse(ConfigurationManager.AppSettings["Audit:Enabled"], out traceEnabled);
-            if (traceEnabled)
-            {
-                container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandAuditor<>));
-                container.RegisterDecorator(typeof (IQueryHandler<,>), typeof (QueryAuditor<,>));
-            }
-            //TODO no need, this is config based
-            //            else
-            //            {
-            //                container.RegisterSingle<ILog, NullLogger>();
-            //            }
+			//TODO auditing should log via a bus or separate asynchronous repository, not to a logger
+			bool traceEnabled;
+			bool.TryParse(ConfigurationManager.AppSettings["Audit:Enabled"], out traceEnabled);
+			if (traceEnabled)
+			{
+				container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandAuditor<>));
+				container.RegisterDecorator(typeof (IQueryHandler<,>), typeof (QueryAuditor<,>));
+			}
+			//TODO no need, this is config based
+			//            else
+			//            {
+			//                container.RegisterSingle<ILog, NullLogger>();
+			//            }
 
-            container.RegisterDecorator(typeof (IQueryHandler<,>), typeof (CacheablePerUserQueryHandler<,>));
-            container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandValidator<>));
-            container.RegisterDecorator(typeof (IQueryHandler<,>), typeof (QueryValidator<,>));
+			container.RegisterDecorator(typeof (IQueryHandler<,>), typeof (CacheablePerUserQueryHandler<,>));
+			container.RegisterDecorator(typeof (ICommandHandler<>), typeof (CommandValidator<>));
+			container.RegisterDecorator(typeof (IQueryHandler<,>), typeof (QueryValidator<,>));
 
-            container.RegisterWebApiRequest<IMediator, DefaultMediator>();
+			container.RegisterWebApiRequest<IMediator, DefaultMediator>();
 
-            /* we are using data annotations for validation, so we must inform simple injector
+			/* we are using data annotations for validation, so we must inform simple injector
              * to use this container when IServiceProvider is requested for validation */
-            container.RegisterWebApiRequest<IServiceProvider>(() => container);
-        }
-    }
+			container.RegisterWebApiRequest<IServiceProvider>(() => container);
+		}
+	}
 }

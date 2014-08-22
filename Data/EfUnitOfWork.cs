@@ -11,22 +11,22 @@ namespace Data
 
 		public EfUnitOfWork(DbContext dataContext)
 		{
-			this._dataContext = dataContext;
+			_dataContext = dataContext;
 		}
 
 		public void Commit()
 		{
 			try
 			{
-				this._dataContext.SaveChanges();
+				_dataContext.SaveChanges();
 			}
 			catch (DbEntityValidationException exception)
 			{
 				var details = new StringBuilder();
-				foreach (var error in exception.EntityValidationErrors)
+				foreach (DbEntityValidationResult error in exception.EntityValidationErrors)
 				{
 					error.ValidationErrors.ToList().ForEach(err =>
-							details.AppendLine(err.PropertyName + ":" + err.ErrorMessage));
+						details.AppendLine(err.PropertyName + ":" + err.ErrorMessage));
 				}
 				throw new DbEntityValidationException("Validation Errors:" + details, exception);
 			}
