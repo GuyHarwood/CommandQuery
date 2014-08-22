@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.Mvc;
+using System.Web.Http;
 using Core;
 
 namespace Api.IocContainer
@@ -11,16 +11,18 @@ namespace Api.IocContainer
 			Type handlerType = typeof (IQueryHandler<,>)
 				.MakeGenericType(query.GetType(), typeof (TResult));
 
-			dynamic handler = DependencyResolver.Current.GetService(handlerType);
+			dynamic handler = GlobalConfiguration.Configuration.DependencyResolver.BeginScope().GetService(handlerType);
+				//DependencyResolver.Current.GetService(handlerType);
 
 			return handler.Handle((dynamic) query);
 		}
 
 		public void Dispatch<TCommand>(TCommand command) where TCommand : Command
 		{
+			Type handlerType = typeof (ICommandHandler<TCommand>);
 			//the MVC dependency resolver points at the underlying IOC container
-			var handler = DependencyResolver.Current.GetService<ICommandHandler<TCommand>>();
-			handler.Handle(command);
+			dynamic handler = GlobalConfiguration.Configuration.DependencyResolver.BeginScope().GetService(handlerType);
+			handler.Handle((dynamic) command);
 		}
 	}
 }

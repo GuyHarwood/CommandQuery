@@ -1,6 +1,16 @@
 ﻿create database ContactApp
 GO
 
+CREATE LOGIN [ContactAppUser] WITH PASSWORD='p@55word', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+/****** Object:  User [ContactAppUser]    Script Date: 7/21/2014 1:54:34 PM ******/
+CREATE USER [ContactAppUser] FOR LOGIN [ContactAppUser] WITH DEFAULT_SCHEMA=[dbo]
+GO
+EXEC sp_addrolemember 'db_datareader', 'ContactAppUser'
+EXEC sp_addrolemember 'db_datawriter', 'ContactAppUser'
+EXEC sp_addrolemember 'db_owner', 'ContactAppUser'
+GO
+
 USE [ContactApp]
 GO
 
@@ -23,5 +33,11 @@ CREATE TABLE [dbo].[Contact](
 ) ON [PRIMARY]
 
 GO
+
+INSERT dbo.Contact (Id, Name) VALUES (NEWID(), 'Bill')
+INSERT dbo.Contact (Id, Name) VALUES (NEWID(), 'Ben')
+INSERT dbo.Contact (Id, Name) VALUES (NEWID(), 'Sally')
+GO
+
 
 
