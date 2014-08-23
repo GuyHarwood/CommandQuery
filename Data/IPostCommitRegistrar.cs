@@ -3,7 +3,7 @@
 namespace Data
 {
 	/// <summary>
-	///     Post unit of work commit hook
+	///     Post commit hook for unit of work.  Useful if you need to retrieve the Id of a newly inserted record
 	/// </summary>
 	public interface IPostCommitRegistrar
 	{

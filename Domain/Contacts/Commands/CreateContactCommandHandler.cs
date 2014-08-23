@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Command;
 
 namespace Domain.Contacts.Commands
 {

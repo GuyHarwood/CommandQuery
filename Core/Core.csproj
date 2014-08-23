@@ -44,25 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheablePerUserQueryHandler.cs" />
-    <Compile Include="CacheRetrievalOption.cs" />
-    <Compile Include="Command.cs" />
-    <Compile Include="CommandAuditor.cs" />
-    <Compile Include="CommandValidator.cs" />
-    <Compile Include="ICache.cs" />
-    <Compile Include="ICacheablePerUser.cs" />
+    <Compile Include="Command\Command.cs" />
+    <Compile Include="Command\CommandAuditor.cs" />
+    <Compile Include="Command\CommandValidator.cs" />
+    <Compile Include="Command\ICommandHandler.cs" />
     <Compile Include="IMediator.cs" />
-    <Compile Include="ICommandHandler.cs" />
-    <Compile Include="IQueryChannel.cs" />
-    <Compile Include="IQueryHandler.cs" />
-    <Compile Include="Query.cs" />
-    <Compile Include="QueryAuditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryValidator.cs" />
+    <Compile Include="Query\CacheablePerUserQueryHandler.cs" />
+    <Compile Include="Query\CacheRetrievalOption.cs" />
+    <Compile Include="Query\ICache.cs" />
+    <Compile Include="Query\ICacheablePerUser.cs" />
+    <Compile Include="Query\IQueryChannel.cs" />
+    <Compile Include="Query\IQueryHandler.cs" />
+    <Compile Include="Query\Query.cs" />
+    <Compile Include="Query\QueryAuditor.cs" />
+    <Compile Include="Query\QueryValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

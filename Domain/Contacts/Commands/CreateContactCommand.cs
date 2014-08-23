@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core;
+using Core.Command;
 
 namespace Domain.Contacts.Commands
 {

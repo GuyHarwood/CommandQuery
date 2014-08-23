@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Web.Http;
+using System.Threading.Tasks;
 using Core;
+using Core.Command;
+using Core.Query;
 using SimpleInjector;
 
 namespace Api.IocContainer
@@ -16,18 +18,21 @@ namespace Api.IocContainer
 
 		public TResult Execute<TResult>(Query<TResult> query)
 		{
-			var handlerType =
-			typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
-
+			Type handlerType = typeof (IQueryHandler<,>).MakeGenericType(query.GetType(), typeof (TResult));
 			dynamic handler = _container.GetInstance(handlerType);
-
-			return handler.Handle((dynamic)query);
+			return handler.Handle((dynamic) query);
 		}
 
 		public void Dispatch<TCommand>(TCommand command) where TCommand : Command
 		{
 			var handler = _container.GetInstance<ICommandHandler<TCommand>>();
 			handler.Handle(command);
+		}
+
+		public async Task DispatchAsync<TCommand>(TCommand command) where TCommand : Command
+		{
+			var handler = _container.GetInstance<IAsyncCommandHandler<TCommand>>();
+			await handler.Handle(command);
 		}
 	}
 }

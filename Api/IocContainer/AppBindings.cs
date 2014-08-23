@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Data.Entity;
 using Core;
+using Core.Command;
+using Core.Query;
 using Data;
 using Domain.Contacts.Commands;
 using Domain.Contacts.Queries;
