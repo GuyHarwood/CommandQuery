@@ -13,7 +13,7 @@ Features under development
 For Consideration
 -----------------
 
-* SignalR + service bus backplane for domain events
+* SignalR + service bus backplane for domain event notifications
 
 
 Key Concepts

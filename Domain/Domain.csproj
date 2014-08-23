@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Contacts\Commands\CreateContactCommand.cs" />
     <Compile Include="Contacts\Commands\CreateContactCommandHandler.cs" />
     <Compile Include="Contacts\Commands\ICreateAContact.cs" />

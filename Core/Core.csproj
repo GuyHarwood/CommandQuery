@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Command\Command.cs" />
     <Compile Include="Command\CommandAuditor.cs" />
     <Compile Include="Command\CommandValidator.cs" />
