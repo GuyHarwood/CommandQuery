@@ -1,28 +1,33 @@
 ﻿using System;
 using System.Web.Http;
 using Core;
+using SimpleInjector;
 
 namespace Api.IocContainer
 {
 	public sealed class DefaultMediator : IMediator
 	{
+		private readonly Container _container;
+
+		public DefaultMediator(Container container)
+		{
+			_container = container;
+		}
+
 		public TResult Execute<TResult>(Query<TResult> query)
 		{
-			Type handlerType = typeof (IQueryHandler<,>)
-				.MakeGenericType(query.GetType(), typeof (TResult));
+			var handlerType =
+			typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));
 
-			dynamic handler = GlobalConfiguration.Configuration.DependencyResolver.BeginScope().GetService(handlerType);
-				//DependencyResolver.Current.GetService(handlerType);
+			dynamic handler = _container.GetInstance(handlerType);
 
-			return handler.Handle((dynamic) query);
+			return handler.Handle((dynamic)query);
 		}
 
 		public void Dispatch<TCommand>(TCommand command) where TCommand : Command
 		{
-			Type handlerType = typeof (ICommandHandler<TCommand>);
-			//the MVC dependency resolver points at the underlying IOC container
-			dynamic handler = GlobalConfiguration.Configuration.DependencyResolver.BeginScope().GetService(handlerType);
-			handler.Handle((dynamic) command);
+			var handler = _container.GetInstance<ICommandHandler<TCommand>>();
+			handler.Handle(command);
 		}
 	}
 }
