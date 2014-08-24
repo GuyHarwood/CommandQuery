@@ -50,10 +50,14 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Common\IDateTimeProvider.cs" />
     <Compile Include="Contacts\Commands\CreateContactCommand.cs" />
     <Compile Include="Contacts\Commands\CreateContactCommandHandler.cs" />
     <Compile Include="Contacts\Commands\ICreateAContact.cs" />
+    <Compile Include="Contacts\Queries\ContactProxy.cs" />
     <Compile Include="Contacts\Queries\ContactsQuery.cs" />
+    <Compile Include="Contacts\Queries\ContactsQueryHandler.cs" />
+    <Compile Include="Contacts\Queries\IReadOnlyRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

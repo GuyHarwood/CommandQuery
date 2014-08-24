@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Query
 {
-	public class QueryValidator<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : Query<TResult>
+	public class QueryValidator<TQuery, TResult> : IQueryHandler<TQuery, TResult> where TQuery : QueryBase<TResult>
 	{
 		private readonly IServiceProvider _container;
 		private readonly IQueryHandler<TQuery, TResult> _decoratedQuery;

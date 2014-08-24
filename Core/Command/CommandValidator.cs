@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Command
 {
-	public class CommandValidator<TCommand> : ICommandHandler<TCommand> where TCommand : Command
+	public class CommandValidator<TCommand> : ICommandHandler<TCommand> where TCommand : CommandBase
 	{
 		private readonly IServiceProvider _container;
 		private readonly ICommandHandler<TCommand> _handler;

@@ -1,9 +1,8 @@
-﻿using Core;
-using Core.Command;
+﻿using Core.Command;
 
 namespace Data
 {
-	public sealed class PostCommitCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand> where TCommand : Command
+	public sealed class PostCommitCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand> where TCommand : CommandBase
 	{
 		private readonly ICommandHandler<TCommand> _decorated;
 		private readonly PostCommitRegistrar _registrar;

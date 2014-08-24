@@ -16,7 +16,5 @@ namespace Domain.Data.Model
     {
         public System.Guid Id { get; set; }
         public string Name { get; set; }
-        public string CreatedBy { get; set; }
-        public System.DateTime CreatedAt { get; set; }
     }
 }

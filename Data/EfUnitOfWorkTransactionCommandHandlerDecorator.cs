@@ -4,7 +4,7 @@ using Core.Command;
 namespace Data
 {
 	public class EfUnitOfWorkTransactionCommandHandlerDecorator<TCommand> : ICommandHandler<TCommand>
-		where TCommand : Command
+		where TCommand : CommandBase
 	{
 		private readonly ICommandHandler<TCommand> _decorated;
 		private readonly EfUnitOfWork _unitOfWork;

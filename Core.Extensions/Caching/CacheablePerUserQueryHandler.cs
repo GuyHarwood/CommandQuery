@@ -1,9 +1,10 @@
 using System.Security.Principal;
+using Core.Query;
 
-namespace Core.Query
+namespace Core.Extensions.Caching
 {
 	public class CacheablePerUserQueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult>
-		where TQuery : Query<TResult>, ICacheablePerUser
+		where TQuery : QueryBase<TResult>, ICacheablePerUser
 	{
 		private readonly ICache _cache;
 		private readonly IPrincipal _principal;

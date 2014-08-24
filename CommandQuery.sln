@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Extensions", "Core.Extensions\Core.Extensions.csproj", "{00902020-8ADA-4AED-8FF8-700140DDAB39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{CE0DD2A3-8D93-4AA3-9096-67D32A495B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE0DD2A3-8D93-4AA3-9096-67D32A495B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE0DD2A3-8D93-4AA3-9096-67D32A495B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00902020-8ADA-4AED-8FF8-700140DDAB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00902020-8ADA-4AED-8FF8-700140DDAB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00902020-8ADA-4AED-8FF8-700140DDAB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00902020-8ADA-4AED-8FF8-700140DDAB39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

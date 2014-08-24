@@ -4,7 +4,7 @@ using Core.Command;
 
 namespace Domain.Contacts.Commands
 {
-	public class CreateContactCommand : Command
+	public class CreateContactCommand : CommandBase
 	{
 		//use data annotations for simple validation
 		[Required]

@@ -1,6 +1,6 @@
-﻿namespace Core.Command
+namespace Core.Query
 {
-	public abstract class Command
+	public abstract class QueryBase<TResult>
 	{
 		/// <summary>
 		///     Custom validation extensibility point.

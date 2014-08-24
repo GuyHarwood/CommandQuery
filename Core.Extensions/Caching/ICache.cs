@@ -1,6 +1,6 @@
 using System;
 
-namespace Core.Query
+namespace Core.Extensions.Caching
 {
 	public interface ICache
 	{

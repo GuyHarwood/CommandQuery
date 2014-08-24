@@ -1,4 +1,4 @@
-namespace Core.Query
+namespace Core.Extensions.Caching
 {
 	public enum CacheRetrievalOption
 	{

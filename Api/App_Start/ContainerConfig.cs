@@ -11,7 +11,7 @@ namespace Api
 		{
 			var container = new Container();
 
-			AppBindings.Bind(container);
+			BindingConfig.Bind(container);
 
 			// This is an extension method from the integration package.
 			container.RegisterWebApiControllers(GlobalConfiguration.Configuration);

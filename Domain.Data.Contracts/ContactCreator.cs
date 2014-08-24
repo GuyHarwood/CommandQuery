@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.Common;
 using Domain.Contacts.Commands;
 using Domain.Data.Model;
 
@@ -18,16 +19,11 @@ namespace Domain.Data.Contracts
 		{
 			_context.Set<Contact>().Add(new Contact
 			{
-				CreatedAt = DateTime.Now,
-				CreatedBy = "TODO", //You would resolve this down to the userId normally
+//				CreatedAt = _dateTimeProvider.Now,
+//				CreatedBy = //TODO resolve to user id
 				Name = name,
 				Id = Guid.NewGuid() //just for the purposes of this POC, can be whatever
 			});
 		}
-	}
-
-	public interface IDateTimeProvider
-	{
-		DateTime Now { get; set; }
 	}
 }
