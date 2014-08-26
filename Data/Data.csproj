@@ -51,10 +51,7 @@
     </Compile>
     <Compile Include="EfUnitOfWork.cs" />
     <Compile Include="EfUnitOfWorkTransactionCommandHandlerDecorator.cs" />
-    <Compile Include="IPostCommitRegistrar.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="PostCommitCommandHandlerDecorator.cs" />
-    <Compile Include="PostCommitRegistrar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
